@@ -7,6 +7,9 @@
 
 import UIKit
 
+// TODO: 음악을 넘길 때 albumCover가 바뀌지 않는 부분 수정
+// TODO: 볼륨 조절 slider 추가
+
 final class MusicPlayerViewController: UIViewController {
   // MARK: Properties
   var album: Album
@@ -69,5 +72,4 @@ final class MusicPlayerViewController: UIViewController {
       view.backgroundColor = UIColor.black
     }
   }
-
 }

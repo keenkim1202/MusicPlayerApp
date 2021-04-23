@@ -295,7 +295,6 @@ final class MediaPlayer: UIView {
     }
     return "\(minStr):\(secStr)"
   }
-  
 }
 
 extension MediaPlayer: AVAudioPlayerDelegate {

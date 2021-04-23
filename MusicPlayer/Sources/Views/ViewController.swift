@@ -32,7 +32,6 @@ class ViewController: UIViewController {
   private func setupView() {
     self.title = "My Music Player"
     view.addSubview(tableView)
-    
     setupConstraints()
   }
   
