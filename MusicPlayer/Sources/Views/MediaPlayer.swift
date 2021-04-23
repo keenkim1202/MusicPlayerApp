@@ -209,6 +209,7 @@ final class MediaPlayer: UIView {
     }
     songNameLabel.text = song.name
     artistLabel.text = song.artist
+    albumCover.image = UIImage(named: song.image)
     
     do {
       player = try AVAudioPlayer(contentsOf: url)
