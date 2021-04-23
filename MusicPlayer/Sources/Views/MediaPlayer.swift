@@ -25,7 +25,7 @@ final class MediaPlayer: UIView {
   private lazy var volumeBar: UISlider = {
     let v = UISlider()
     v.translatesAutoresizingMaskIntoConstraints = false
-    v.value = 0.5
+    v.value = currentVolume
     v.addTarget(self, action: #selector(didSlideSlider), for: .valueChanged)
     return v
   }()
@@ -216,6 +216,12 @@ final class MediaPlayer: UIView {
     ])
   }
   
+  // MARK: Set Volume
+  func setVolume() {
+    volumeBar.value = currentVolume
+    player.volume = volumeBar.value
+  }
+  
   private func setupPlayer(song: Song) {
     guard let url = Bundle.main.url(forResource: song.fileName, withExtension: ".mp3") else {
       return
@@ -227,7 +233,6 @@ final class MediaPlayer: UIView {
     songNameLabel.text = song.name
     artistLabel.text = song.artist
     albumCover.image = UIImage(named: song.image)
-    volumeBar.value = 0.5
     
     do {
       player = try AVAudioPlayer(contentsOf: url)
@@ -239,6 +244,7 @@ final class MediaPlayer: UIView {
     } catch let error {
       print(error.localizedDescription)
     }
+    setVolume()
   }
   
   func play() {
@@ -291,7 +297,6 @@ final class MediaPlayer: UIView {
   }
   
   @objc private func didTapNext(_ sender: UIButton) {
-    currentVolume = player.volume
     playingIndex += 1
     if playingIndex >= album.songs.count {
       playingIndex = 0
@@ -304,6 +309,7 @@ final class MediaPlayer: UIView {
   @objc func didSlideSlider(_ slider: UISlider) {
     let value = volumeBar.value
     player.volume = value
+    currentVolume = value
   }
   
   // MARK: Time Formatter
