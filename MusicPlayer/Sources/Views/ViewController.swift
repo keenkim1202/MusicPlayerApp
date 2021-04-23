@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     v.translatesAutoresizingMaskIntoConstraints = false
     v.delegate = self
     v.dataSource = self
-    v.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-    v.estimatedRowHeight = 132
+    v.register(AlbumTableViewCell.self, forCellReuseIdentifier: "cell")
+    v.estimatedRowHeight = 110
     v.rowHeight = UITableView.automaticDimension
     v.tableFooterView = UIView()
     return v
@@ -36,6 +36,7 @@ class ViewController: UIViewController {
     setupConstraints()
   }
   
+  // MARK: Configure
   func setupConstraints() {
     // UITableView
     NSLayoutConstraint.activate([
@@ -54,8 +55,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    cell.textLabel?.text = album[indexPath.row].name
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AlbumTableViewCell else { return UITableViewCell() }
+    cell.album = album[indexPath.row]
     return cell
   }
 }

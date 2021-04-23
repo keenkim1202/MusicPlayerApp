@@ -53,7 +53,6 @@
 			isa = PBXGroup;
 			children = (
 				1C30560326328F9800322FA3 /* MusicPlayer */,
-				1C30562D2632A00700322FA3 /* Supporting Files */,
 				1C30560226328F9800322FA3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,6 +70,7 @@
 			children = (
 				1C30562C26329FF100322FA3 /* Sources */,
 				1C30562B26329FEA00322FA3 /* Resources */,
+				1C30562D2632A00700322FA3 /* Supporting Files */,
 				1C30560426328F9800322FA3 /* AppDelegate.swift */,
 				1C30560626328F9800322FA3 /* SceneDelegate.swift */,
 			);
