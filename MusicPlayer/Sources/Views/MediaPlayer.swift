@@ -11,13 +11,22 @@ import AVKit
 final class MediaPlayer: UIView {
   // MARK: Properties
   var album: Album
-
+  var currentVolume: Float
+  
   private lazy var albumCover: UIImageView = {
     let v = UIImageView()
     v.translatesAutoresizingMaskIntoConstraints = false
     v.contentMode = .scaleAspectFill
     v.clipsToBounds = true
     v.layer.cornerRadius = 20
+    return v
+  }()
+  
+  private lazy var volumeBar: UISlider = {
+    let v = UISlider()
+    v.translatesAutoresizingMaskIntoConstraints = false
+    v.value = 0.5
+    v.addTarget(self, action: #selector(didSlideSlider), for: .valueChanged)
     return v
   }()
   
@@ -113,6 +122,7 @@ final class MediaPlayer: UIView {
   // MARK: Init
   init(album: Album) {
     self.album = album
+    self.currentVolume = 0.5
     super.init(frame: .zero)
     setupView()
   }
@@ -135,7 +145,7 @@ final class MediaPlayer: UIView {
       v.tintColor = .white
     }
     
-    [albumName, albumCover, songNameLabel, artistLabel, progressBar, elapsedTimeLabel, remainingTimeLabel, controllStack].forEach { (v) in
+    [albumName, albumCover, songNameLabel, artistLabel, progressBar, elapsedTimeLabel, remainingTimeLabel, controllStack, volumeBar].forEach { (v) in
       addSubview(v)
     }
     
@@ -197,6 +207,13 @@ final class MediaPlayer: UIView {
       controllStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -48),
       controllStack.topAnchor.constraint(equalTo: remainingTimeLabel.bottomAnchor, constant: 8)
     ])
+    
+    // volume bar
+    NSLayoutConstraint.activate([
+      volumeBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+      volumeBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+      volumeBar.topAnchor.constraint(equalTo: controllStack.bottomAnchor, constant: 8)
+    ])
   }
   
   private func setupPlayer(song: Song) {
@@ -210,6 +227,7 @@ final class MediaPlayer: UIView {
     songNameLabel.text = song.name
     artistLabel.text = song.artist
     albumCover.image = UIImage(named: song.image)
+    volumeBar.value = 0.5
     
     do {
       player = try AVAudioPlayer(contentsOf: url)
@@ -273,6 +291,7 @@ final class MediaPlayer: UIView {
   }
   
   @objc private func didTapNext(_ sender: UIButton) {
+    currentVolume = player.volume
     playingIndex += 1
     if playingIndex >= album.songs.count {
       playingIndex = 0
@@ -280,6 +299,11 @@ final class MediaPlayer: UIView {
     setupPlayer(song: album.songs[playingIndex])
     play()
     setPlayPauseIcon(isPlaying: player.isPlaying)
+  }
+  
+  @objc func didSlideSlider(_ slider: UISlider) {
+    let value = volumeBar.value
+    player.volume = value
   }
   
   // MARK: Time Formatter

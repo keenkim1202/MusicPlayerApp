@@ -7,7 +7,7 @@
 
 import UIKit
 
-// TODO: 볼륨 조절 slider 추가
+// TODO: 이전 곡으로 넘어가도 player의 volume이 유지되도록 하기
 
 final class MusicPlayerViewController: UIViewController {
   // MARK: Properties
