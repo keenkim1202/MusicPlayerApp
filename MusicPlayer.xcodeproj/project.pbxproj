@@ -19,6 +19,8 @@
 		1C305627263294D000322FA3 /* sunmi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C305624263294D000322FA3 /* sunmi.mp3 */; };
 		1C305628263294D000322FA3 /* justinBieber.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C305625263294D000322FA3 /* justinBieber.mp3 */; };
 		1C3056312632A0A500322FA3 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3056302632A0A500322FA3 /* AlbumTableViewCell.swift */; };
+		1C3056372632A7C800322FA3 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3056362632A7C800322FA3 /* MusicPlayer.swift */; };
+		1C30563A2632B4D200322FA3 /* MusicPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3056392632B4D200322FA3 /* MusicPlayerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		1C305624263294D000322FA3 /* sunmi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sunmi.mp3; sourceTree = "<group>"; };
 		1C305625263294D000322FA3 /* justinBieber.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = justinBieber.mp3; sourceTree = "<group>"; };
 		1C3056302632A0A500322FA3 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
+		1C3056362632A7C800322FA3 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		1C3056392632B4D200322FA3 /* MusicPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 			children = (
 				1C30560826328F9800322FA3 /* ViewController.swift */,
 				1C3056302632A0A500322FA3 /* AlbumTableViewCell.swift */,
+				1C3056362632A7C800322FA3 /* MusicPlayer.swift */,
+				1C3056392632B4D200322FA3 /* MusicPlayerViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,8 +216,10 @@
 				1C30560926328F9800322FA3 /* ViewController.swift in Sources */,
 				1C30560526328F9800322FA3 /* AppDelegate.swift in Sources */,
 				1C30560726328F9800322FA3 /* SceneDelegate.swift in Sources */,
+				1C3056372632A7C800322FA3 /* MusicPlayer.swift in Sources */,
 				1C3056202632946700322FA3 /* Album.swift in Sources */,
 				1C3056312632A0A500322FA3 /* AlbumTableViewCell.swift in Sources */,
+				1C30563A2632B4D200322FA3 /* MusicPlayerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
