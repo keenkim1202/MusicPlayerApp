@@ -204,7 +204,6 @@ final class MediaPlayer: UIView {
     if timer == nil {
       timer = Timer.scheduledTimer(timeInterval: 0.0001, target: self, selector: #selector(updateProgress), userInfo: nil, repeats: true)
     }
-    
     songNameLabel.text = song.name
     artistLabel.text = song.artist
     
@@ -220,25 +219,80 @@ final class MediaPlayer: UIView {
     }
   }
   
+  func play() {
+    progressBar.value = 0.0
+    progressBar.maximumValue = Float(player.duration)
+    player.play()
+    setPlayPauseIcon(isPlaying: player.isPlaying)
+  }
+  
+  func stop() {
+    player.stop()
+    timer?.invalidate()
+    timer = nil
+  }
+  
+  private func setPlayPauseIcon(isPlaying: Bool) {
+    let config = UIImage.SymbolConfiguration(pointSize: 100)
+    playPauseButton.setImage(UIImage(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill", withConfiguration: config), for: .normal)
+  }
+  
+  // MARK: Action
   @objc private func updateProgress() {
-    
+    progressBar.value = Float(player.currentTime)
+    let remainingTime = player.duration - player.currentTime
+    remainingTimeLabel.text = getFormattedTime(timeInterval: player.currentTime)
+    elapsedTimeLabel.text = getFormattedTime(timeInterval: remainingTime)
   }
   
   @objc private func progressScrubbed(_ sender: UISlider) {
-    
+    player.currentTime = Float64(sender.value)
   }
   
   @objc private func didTapPrevious(_ sender: UIButton) {
-    
+    playingIndex -= 1
+    if playingIndex < 0 {
+      playingIndex = album.songs.count - 1
+    }
+    setupPlayer(song: album.songs[playingIndex])
+    play()
+    setPlayPauseIcon(isPlaying: player.isPlaying)
   }
   
   @objc private func didTapPlayPause(_ sender: UIButton) {
-    
+    if player.isPlaying {
+      player.pause()
+    } else {
+      player.play()
+    }
+    setPlayPauseIcon(isPlaying: player.isPlaying)
   }
   
   @objc private func didTapNext(_ sender: UIButton) {
-    
+    playingIndex += 1
+    if playingIndex >= album.songs.count {
+      playingIndex = 0
+    }
+    setupPlayer(song: album.songs[playingIndex])
+    play()
+    setPlayPauseIcon(isPlaying: player.isPlaying)
   }
+  
+  // MARK: Time Formatter
+  private func getFormattedTime(timeInterval:TimeInterval) -> String {
+    let mins = timeInterval / 60
+    let secs = timeInterval.truncatingRemainder(dividingBy: 60)
+    let timeFormatter = NumberFormatter()
+    timeFormatter.minimumIntegerDigits = 2
+    timeFormatter.minimumFractionDigits = 0
+    timeFormatter.roundingMode = .down
+    
+    guard let minStr = timeFormatter.string(from: NSNumber(value: mins)), let secStr = timeFormatter.string(from: NSNumber(value: secs)) else {
+      return "00:00"
+    }
+    return "\(minStr):\(secStr)"
+  }
+  
 }
 
 extension MediaPlayer: AVAudioPlayerDelegate {
