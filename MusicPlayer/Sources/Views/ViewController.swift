@@ -50,13 +50,22 @@ class ViewController: UIViewController {
 
 // MARK: UITableViewDelegate & UITableViewDataSource
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView,
+                 numberOfRowsInSection section: Int) -> Int {
     return album.count
   }
   
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView,
+                 cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AlbumTableViewCell else { return UITableViewCell() }
     cell.album = album[indexPath.row]
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView,
+                 didSelectRowAt indexPath: IndexPath) {
+    let vc = MusicPlayerViewController(album: album[indexPath.row])
+    tableView.deselectRow(at: indexPath, animated: true)
+    present(vc, animated: true, completion: nil)
   }
 }

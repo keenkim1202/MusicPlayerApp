@@ -5,7 +5,7 @@
 //  Created by KEEN on 2021/04/23.
 //
 
-import Foundation
+import UIKit
 import AVKit
 
 final class MediaPlayer: UIView {
@@ -17,8 +17,7 @@ final class MediaPlayer: UIView {
     v.translatesAutoresizingMaskIntoConstraints = false
     v.contentMode = .scaleAspectFill
     v.clipsToBounds = true
-    v.layer.cornerRadius = 100
-    v.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner]
+    v.layer.cornerRadius = 20
     return v
   }()
   
@@ -82,7 +81,7 @@ final class MediaPlayer: UIView {
   private lazy var playPauseButton: UIButton = {
     let v = UIButton()
     v.translatesAutoresizingMaskIntoConstraints = false
-    let config = UIImage.SymbolConfiguration(pointSize: 100)
+    let config = UIImage.SymbolConfiguration(pointSize: 80)
     v.setImage(UIImage(systemName: "play.circle.fill", withConfiguration: config),for: .normal)
     v.addTarget(self, action: #selector(didTapPlayPause), for: .touchUpInside)
     return v
@@ -102,7 +101,7 @@ final class MediaPlayer: UIView {
     v.translatesAutoresizingMaskIntoConstraints = false
     v.axis = .horizontal
     v.distribution = .equalSpacing
-    v.spacing = 20
+    v.spacing = 10
     return v
   }()
   
@@ -132,6 +131,10 @@ final class MediaPlayer: UIView {
       v.textColor = .white
     }
     
+    [previousButton, playPauseButton, nextButton].forEach { (v) in
+      v.tintColor = .white
+    }
+    
     [albumName, albumCover, songNameLabel, artistLabel, progressBar, elapsedTimeLabel, remainingTimeLabel, controllStack].forEach { (v) in
       addSubview(v)
     }
@@ -150,16 +153,16 @@ final class MediaPlayer: UIView {
     // album cover
     NSLayoutConstraint.activate([
       albumCover.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-      albumCover.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 16),
-      albumCover.topAnchor.constraint(equalTo: albumName.topAnchor, constant: 32),
-      albumCover.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 0.5)
+      albumCover.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+      albumCover.topAnchor.constraint(equalTo: albumName.bottomAnchor, constant: 32),
+      albumCover.heightAnchor.constraint(equalTo: albumCover.widthAnchor)
     ])
     
     // songs name
     NSLayoutConstraint.activate([
       songNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
       songNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-      songNameLabel.topAnchor.constraint(equalTo: albumCover.topAnchor, constant: 16),
+      songNameLabel.topAnchor.constraint(equalTo: albumCover.bottomAnchor, constant: 16),
     ])
     
     // artist label
@@ -184,14 +187,14 @@ final class MediaPlayer: UIView {
     
     // remaining time
     NSLayoutConstraint.activate([
-      remainingTimeLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -16),
+      remainingTimeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
       remainingTimeLabel.topAnchor.constraint(equalTo: progressBar.bottomAnchor, constant: 8)
     ])
     
     // control stack
     NSLayoutConstraint.activate([
-      controllStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-      controllStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
+      controllStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 48),
+      controllStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -48),
       controllStack.topAnchor.constraint(equalTo: remainingTimeLabel.bottomAnchor, constant: 8)
     ])
   }
@@ -233,7 +236,7 @@ final class MediaPlayer: UIView {
   }
   
   private func setPlayPauseIcon(isPlaying: Bool) {
-    let config = UIImage.SymbolConfiguration(pointSize: 100)
+    let config = UIImage.SymbolConfiguration(pointSize: 80)
     playPauseButton.setImage(UIImage(systemName: isPlaying ? "pause.circle.fill" : "play.circle.fill", withConfiguration: config), for: .normal)
   }
   
