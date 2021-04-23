@@ -13,6 +13,11 @@
 		1C30560C26328F9800322FA3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C30560A26328F9800322FA3 /* Main.storyboard */; };
 		1C30560E26328F9900322FA3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C30560D26328F9900322FA3 /* Assets.xcassets */; };
 		1C30561126328F9900322FA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C30560F26328F9900322FA3 /* LaunchScreen.storyboard */; };
+		1C30561C2632942100322FA3 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C30561B2632942100322FA3 /* Song.swift */; };
+		1C3056202632946700322FA3 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C30561F2632946700322FA3 /* Album.swift */; };
+		1C305626263294D000322FA3 /* chungHa.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C305623263294D000322FA3 /* chungHa.mp3 */; };
+		1C305627263294D000322FA3 /* sunmi.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C305624263294D000322FA3 /* sunmi.mp3 */; };
+		1C305628263294D000322FA3 /* justinBieber.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1C305625263294D000322FA3 /* justinBieber.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		1C30560D26328F9900322FA3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1C30561026328F9900322FA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1C30561226328F9900322FA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C30561B2632942100322FA3 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		1C30561F2632946700322FA3 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		1C305623263294D000322FA3 /* chungHa.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = chungHa.mp3; sourceTree = "<group>"; };
+		1C305624263294D000322FA3 /* sunmi.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = sunmi.mp3; sourceTree = "<group>"; };
+		1C305625263294D000322FA3 /* justinBieber.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = justinBieber.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,8 @@
 		1C30560326328F9800322FA3 /* MusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				1C305622263294AA00322FA3 /* Pop */,
+				1C30561E2632945C00322FA3 /* Model */,
 				1C30560426328F9800322FA3 /* AppDelegate.swift */,
 				1C30560626328F9800322FA3 /* SceneDelegate.swift */,
 				1C30560826328F9800322FA3 /* ViewController.swift */,
@@ -65,6 +77,25 @@
 				1C30561226328F9900322FA3 /* Info.plist */,
 			);
 			path = MusicPlayer;
+			sourceTree = "<group>";
+		};
+		1C30561E2632945C00322FA3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1C30561B2632942100322FA3 /* Song.swift */,
+				1C30561F2632946700322FA3 /* Album.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1C305622263294AA00322FA3 /* Pop */ = {
+			isa = PBXGroup;
+			children = (
+				1C305623263294D000322FA3 /* chungHa.mp3 */,
+				1C305625263294D000322FA3 /* justinBieber.mp3 */,
+				1C305624263294D000322FA3 /* sunmi.mp3 */,
+			);
+			path = Pop;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +158,9 @@
 				1C30561126328F9900322FA3 /* LaunchScreen.storyboard in Resources */,
 				1C30560E26328F9900322FA3 /* Assets.xcassets in Resources */,
 				1C30560C26328F9800322FA3 /* Main.storyboard in Resources */,
+				1C305626263294D000322FA3 /* chungHa.mp3 in Resources */,
+				1C305628263294D000322FA3 /* justinBieber.mp3 in Resources */,
+				1C305627263294D000322FA3 /* sunmi.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +171,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C30561C2632942100322FA3 /* Song.swift in Sources */,
 				1C30560926328F9800322FA3 /* ViewController.swift in Sources */,
 				1C30560526328F9800322FA3 /* AppDelegate.swift in Sources */,
 				1C30560726328F9800322FA3 /* SceneDelegate.swift in Sources */,
+				1C3056202632946700322FA3 /* Album.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
